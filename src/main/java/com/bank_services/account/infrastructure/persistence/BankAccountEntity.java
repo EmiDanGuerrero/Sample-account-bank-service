@@ -16,10 +16,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "bank_accounts", uniqueConstraints = {
 		@UniqueConstraint(name = "uk_bank_account_cbu", columnNames = "cbu") })
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class BankAccountEntity {
 
 	@Id
@@ -58,97 +66,4 @@ public class BankAccountEntity {
 
 	@Column(name = "updated_at", nullable = false)
 	private LocalDateTime updatedAt;
-
-	public BankAccountEntity() {
-	}
-
-	// Getters y setters
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getCbu() {
-		return cbu;
-	}
-
-	public void setCbu(String cbu) {
-		this.cbu = cbu;
-	}
-
-	public String getOwnerName() {
-		return ownerName;
-	}
-
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
-
-	public String getOwnerDocument() {
-		return ownerDocument;
-	}
-
-	public void setOwnerDocument(String ownerDocument) {
-		this.ownerDocument = ownerDocument;
-	}
-
-	public Currency getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public AccountStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(AccountStatus status) {
-		this.status = status;
-	}
-
-	public String getBranchCode() {
-		return branchCode;
-	}
-
-	public void setBranchCode(String branchCode) {
-		this.branchCode = branchCode;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 }

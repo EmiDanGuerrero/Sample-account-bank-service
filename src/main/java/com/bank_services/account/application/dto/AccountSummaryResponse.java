@@ -6,81 +6,37 @@ import java.util.UUID;
 import com.bank_services.account.domain.model.AccountStatus;
 import com.bank_services.account.domain.model.Currency;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
 public class AccountSummaryResponse {
 
+	@NotBlank
+	@Size(max = 50)
 	private UUID id;
+
+	@NotBlank
+	@Size(max = 100)
 	private String ownerName;
+
+	@NotBlank
+	@Size(max = 50)
 	private String accountNumber;
+
+	@NotBlank
+	@Size(max = 20)
 	private String branchCode;
+	
+	@NotBlank
 	private Currency currency;
+	
 	private BigDecimal balance;
+	
+	@NotBlank
 	private AccountStatus status;
+	
+	@NotBlank
 	private boolean lowBalanceRisk;
-
-	public AccountSummaryResponse() {
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getOwnerName() {
-		return ownerName;
-	}
-
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
-
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getBranchCode() {
-		return branchCode;
-	}
-
-	public void setBranchCode(String branchCode) {
-		this.branchCode = branchCode;
-	}
-
-	public Currency getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public AccountStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(AccountStatus status) {
-		this.status = status;
-	}
-
-	public boolean isLowBalanceRisk() {
-		return lowBalanceRisk;
-	}
-
-	public void setLowBalanceRisk(boolean lowBalanceRisk) {
-		this.lowBalanceRisk = lowBalanceRisk;
-	}
 }

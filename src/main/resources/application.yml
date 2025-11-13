@@ -17,6 +17,9 @@ spring:
       path: /h2-console
 
 logging:
+  logstash:
+    host: localhost
+    port: 5000
   level:
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace

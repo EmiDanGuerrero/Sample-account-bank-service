@@ -7,108 +7,47 @@ import java.util.UUID;
 import com.bank_services.account.domain.model.AccountStatus;
 import com.bank_services.account.domain.model.Currency;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
 public class BankAccountResponse {
 
+	@NotBlank
+	@Size(max = 50)
 	private UUID id;
+	
+	@NotBlank
+	@Size(max = 50)
 	private String accountNumber;
+	
+	@NotBlank
+	@Size(max = 50)
 	private String cbu;
+	
+	@NotBlank
+	@Size(max = 100)
 	private String ownerName;
+	
+	@NotBlank
+	@Size(max = 50)
 	private String ownerDocument;
+	
+	@NotBlank
 	private Currency currency;
+	
 	private BigDecimal balance;
+	
+	@NotBlank
 	private AccountStatus status;
+	
+	@NotBlank
+	@Size(max = 20)
 	private String branchCode;
+	
+	@NotBlank
 	private LocalDateTime createdAt;
+	
 	private LocalDateTime updatedAt;
-
-	public BankAccountResponse() {
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getCbu() {
-		return cbu;
-	}
-
-	public void setCbu(String cbu) {
-		this.cbu = cbu;
-	}
-
-	public String getOwnerName() {
-		return ownerName;
-	}
-
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
-
-	public String getOwnerDocument() {
-		return ownerDocument;
-	}
-
-	public void setOwnerDocument(String ownerDocument) {
-		this.ownerDocument = ownerDocument;
-	}
-
-	public Currency getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public AccountStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(AccountStatus status) {
-		this.status = status;
-	}
-
-	public String getBranchCode() {
-		return branchCode;
-	}
-
-	public void setBranchCode(String branchCode) {
-		this.branchCode = branchCode;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 }
