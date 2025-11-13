@@ -27,10 +27,6 @@ public class AccountService {
 					"BankAccount with CBU %s already exists".formatted(bankAccount.getCbu()));
 		}
 
-		if (bankAccount.getId() == null) {
-			bankAccount.setId(UUID.randomUUID());
-		}
-
 		LocalDateTime now = LocalDateTime.now();
 		if (bankAccount.getCreatedAt() == null) {
 			bankAccount.setCreatedAt(now);

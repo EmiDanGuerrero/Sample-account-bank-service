@@ -62,7 +62,10 @@ public class BankAccount {
 		this.branchCode = source.getBranchCode();
 		this.currency = source.getCurrency();
 		this.balance = source.getBalance();
-		this.status = source.getStatus();
+		// IMPORTANTE: no tocamos el status si viene null
+		if (source.getStatus() != null) {
+			this.status = source.getStatus();
+		}
 		this.updatedAt = LocalDateTime.now();
 	}
 
