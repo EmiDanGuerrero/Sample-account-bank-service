@@ -1,4 +1,4 @@
-# 🏦 Bank Account Service
+# 📊 Bank Account Service
 
 Microservicio REST para gestionar **cuentas bancarias**, pensado como ejercicio técnico, pero construido con criterios de proyecto real:
 
@@ -64,23 +64,24 @@ En este caso:
 Se sigue un esquema **Ports & Adapters (arquitectura hexagonal)** para separar dominio de infraestructura.
 
 ```text
-com.bank_services.account
- ├─ domain
- │   ├─ model        # BankAccount, enums (Currency, AccountStatus)
- │   ├─ port         # AccountRepositoryPort (puerto de salida)
- │   ├─ service      # AccountService con reglas de negocio
- │   └─ exception    # Excepciones: ResourceNotFound, DuplicateResource
- ├─ application
- │   └─ dto          # DTOs de request/response para la API pública
- └─ infrastructure
-     ├─ persistence  # JPA: BankAccountEntity, SpringDataAccountRepository,
-     │               #      AccountRepositoryAdapter (adapter del puerto)
-     ├─ web          # AccountController + SelfAccountClient (RestClient)
-     ├─ error        # ApiError + GlobalExceptionHandler
-     ├─ config       # Configuración de Logbook, etc.
-     └─ logging      # (si aplica) clases auxiliares para logging
+  com.bank_services.account
+  ├─ domain
+  │   ├─ model        # BankAccount, enums (Currency, AccountStatus)
+  │   ├─ port         # AccountRepositoryPort (puerto de salida)
+  │   ├─ service      # AccountService con reglas de negocio
+  │   └─ exception    # Excepciones: ResourceNotFound, DuplicateResource
+  ├─ application
+  │   └─ dto          # DTOs de request/response para la API pública
+  └─ infrastructure
+      ├─ persistence  # JPA: BankAccountEntity, SpringDataAccountRepository,
+      │               #      AccountRepositoryAdapter (adapter del puerto)
+      ├─ web          # AccountController + SelfAccountClient (RestClient)
+      ├─ error        # ApiError + GlobalExceptionHandler
+      ├─ config       # Configuración de Logbook, etc.
+      └─ logging      # (si aplica) clases auxiliares para logging
+```
 
-### Dominio
+## Dominio
 
 - `BankAccount`:
   - implementado con **Lombok** (`@Data`, `@Builder`, etc.) para mantener el modelo limpio.
@@ -137,11 +138,13 @@ Base: `http://localhost:8080/api/v1/accounts`
 curl -X POST "http://localhost:8080/api/v1/accounts" ^
   -H "Content-Type: application/json" ^
   -d "{""accountNumber"":""ACC-001"",""cbu"":""1230000100000000000011"",""ownerName"":""Juan Perez"",""ownerDocument"":""30123456"",""currency"":""ARS"",""balance"":500.00,""branchCode"":""001""}"
+```
 
 **Resumen de cuenta:**
 
 ```bat
 curl -X GET "http://localhost:8080/api/v1/accounts/{ID}/summary"
+```
 
 ## 5. Base de datos H2
 
@@ -191,7 +194,7 @@ Ejecutar:
 ```bash
 cd elk
 docker compose up -d
-
+```
 
 Servicios disponibles:
 
@@ -199,13 +202,11 @@ Servicios disponibles:
 - Kibana:         http://localhost:5601
 - Logstash (TCP): puerto 5000
 
-#### Visualización en Kibana
-
-1. Ir a: http://localhost:5601  
-2. Abrir la sección **Discover**  
-3. Crear un *Data View* con el patrón:
-
-   bank-logs-*
+### Visualización en Kibana:
+  1. Ir a: http://localhost:5601  
+  2. Abrir la sección **Discover**  
+  3. Crear un *Data View* con el patrón:
+  - bank-logs-*
 
 Los logs enviados por la aplicación aparecerán automáticamente allí.
 
@@ -219,24 +220,26 @@ Los logs enviados por la aplicación aparecerán automáticamente allí.
 - Maven 3.9+  
 - Docker Desktop (solo si vas a usar ELK)
 
-### Ejecutar en modo desarrollo
-
-mvn spring-boot:run -DskipTests
+### Ejecutar con el comando
+```bash
+mvn spring-boot:run
+```
 
 ### Construir y ejecutar el JAR
-
-mvn clean package -DskipTests
+```bash
+mvn clean package 
 java -jar target/bank-account-service-0.0.1-SNAPSHOT.jar
+```
 
 La API se expone en:
 
 http://localhost:8080/api/v1/accounts
 
 ### Levantar ELK (opcional)
-
+```bash
 cd elk
 docker compose up -d
-
+```
 ---
 
 ## 8. Pruebas automatizadas (opcional)
@@ -260,21 +263,15 @@ Prueban:
 - Códigos HTTP esperados (200, 201, 404, 409)
 
 Ejecución de pruebas:
-
+```bash
 mvn clean test
+```
 
----
+## 🧑‍💻 Autor
 
-## 9. Líneas de mejora
+**Emiliano Daniel Guerrero**  
+Backend Software Engineer (Java / Spring Boot)
 
-Algunas extensiones naturales del proyecto:
-
-- Documentación automática de la API con **OpenAPI / Swagger UI**  
-- Autenticación y autorización (JWT + Spring Security)  
-- Filtros y paginación en endpoints de consulta  
-- Métricas técnicas y de negocio con Micrometer + Prometheus/Grafana  
-- Extensión del dominio a:
-  - Movimientos bancarios  
-  - Clientes  
-  - Transferencias  
-  - Integración con otros microservicios reutilizando la misma arquitectura hexagonal
+- 🌍 Salta, Argentina  
+- 📧 Contacto: guerrero.emiliano@outlook.com 
+- 💻 GitHub: https://github.com/EmiDanGuerrero
