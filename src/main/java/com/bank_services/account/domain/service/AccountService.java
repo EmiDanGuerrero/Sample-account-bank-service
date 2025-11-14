@@ -58,8 +58,9 @@ public class AccountService {
 			throw new DuplicateResourceException(
 					"Another BankAccount with CBU %s already exists".formatted(updatedAccount.getCbu()));
 		}
-
+		
 		existing.updateFrom(updatedAccount);
+		existing.setUpdatedAt(LocalDateTime.now());
 		return repositoryPort.save(existing);
 	}
 
