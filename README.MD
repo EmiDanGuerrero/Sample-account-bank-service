@@ -21,8 +21,8 @@ Microservicio REST para gestionar **cuentas bancarias**, pensado como ejercicio 
 - **Lombok** (getters/setters/builders)
 - **Logback** + `logstash-logback-encoder` (logs JSON)
 - **Logbook (Zalando)** para trazas HTTP
-- **ELK 9.2.1** (Elasticsearch + Logstash + Kibana) vía Docker (opcional)
-- JUnit 5 + Mockito (tests de dominio y de integración, opcionales)
+- **ELK 9.2.1** (Elasticsearch + Logstash + Kibana) vía Docker
+- JUnit 5 + Mockito (tests de dominio y de integración)
 
 > 💡 Si abrís el proyecto en un IDE (Eclipse/IntelliJ/STS) vas a necesitar:
 > - plugin de **Lombok** instalado  
@@ -178,7 +178,7 @@ La aplicación usa:
 
 Esto permite analizar peticiones sin necesidad de herramientas externas.
 
-### Integración opcional con ELK
+### Integración con ELK
 
 El proyecto incluye un stack básico **ELK (Elasticsearch + Logstash + Kibana)** para visualizar logs estructurados.
 
@@ -235,14 +235,14 @@ La API se expone en:
 
 http://localhost:8080/api/v1/accounts
 
-### Levantar ELK (opcional)
+### Levantar ELK
 ```bash
 cd elk
 docker compose up -d
 ```
 ---
 
-## 8. Pruebas automatizadas (opcional)
+## 8. Pruebas automatizadas
 
 El proyecto contempla dos tipos de pruebas:
 
