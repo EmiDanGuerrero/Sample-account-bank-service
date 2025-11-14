@@ -4,7 +4,6 @@
 --  Tabla: bank_accounts
 -- =========================================================
 
--- (Opcional) Borrar tabla si ya existe - útil en desarrollo
 DROP TABLE IF EXISTS bank_accounts;
 
 CREATE TABLE bank_accounts (

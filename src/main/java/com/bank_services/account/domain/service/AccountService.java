@@ -50,23 +50,19 @@ public class AccountService {
 	}
 
 	public BankAccount update(UUID id, BankAccount updatedAccount) {
-		BankAccount existing = getById(id); // lanza ResourceNotFoundException si no existe
+		BankAccount existing = getById(id);
 
-		// Validar cambio de CBU
 		if (updatedAccount.getCbu() != null && !updatedAccount.getCbu().equals(existing.getCbu())
 				&& repositoryPort.existsByCbu(updatedAccount.getCbu())) {
 			throw new DuplicateResourceException(
 					"Another BankAccount with CBU %s already exists".formatted(updatedAccount.getCbu()));
 		}
-		
+
 		existing.updateFrom(updatedAccount);
 		existing.setUpdatedAt(LocalDateTime.now());
 		return repositoryPort.save(existing);
 	}
 
-	/**
-	 * "Eliminar" cuenta: cierre lógico (status = CLOSED).
-	 */
 	public void delete(UUID id) {
 		BankAccount existing = getById(id);
 		existing.close();

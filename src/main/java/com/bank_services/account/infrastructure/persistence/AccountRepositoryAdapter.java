@@ -56,7 +56,6 @@ public class AccountRepositoryAdapter implements AccountRepositoryPort {
 		return repository.existsByCbu(cbu);
 	}
 
-	// ================== Mappers ==================
 
 	private BankAccount toDomain(BankAccountEntity entity) {
 		if (entity == null) {

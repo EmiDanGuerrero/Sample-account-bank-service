@@ -33,7 +33,7 @@ public class SelfAccountClient {
 			return mapToSummary(account);
 		} catch (HttpStatusCodeException e) {
 			if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-				throw e; // más adelante lo maneja el handler global
+				throw e;
 			}
 			throw e;
 		} catch (RestClientException e) {

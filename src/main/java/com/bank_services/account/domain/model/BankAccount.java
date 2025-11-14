@@ -30,10 +30,9 @@ public class BankAccount {
 	public static BankAccount createNew(String accountNumber, String cbu, String ownerName, String ownerDocument,
 			Currency currency, String branchCode) {
 		LocalDateTime now = LocalDateTime.now();
-		return BankAccount.builder().id(null) // lo pondrá JPA
-				.accountNumber(accountNumber).cbu(cbu).ownerName(ownerName).ownerDocument(ownerDocument)
-				.currency(currency).balance(BigDecimal.ZERO).status(AccountStatus.ACTIVE).branchCode(branchCode)
-				.createdAt(now).updatedAt(now).build();
+		return BankAccount.builder().id(null).accountNumber(accountNumber).cbu(cbu).ownerName(ownerName)
+				.ownerDocument(ownerDocument).currency(currency).balance(BigDecimal.ZERO).status(AccountStatus.ACTIVE)
+				.branchCode(branchCode).createdAt(now).updatedAt(now).build();
 	}
 
 	public void updateFrom(BankAccount source) {

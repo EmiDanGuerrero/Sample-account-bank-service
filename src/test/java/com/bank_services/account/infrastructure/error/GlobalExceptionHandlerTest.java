@@ -28,7 +28,6 @@ class GlobalExceptionHandlerTest {
 
 	@SuppressWarnings("unused")
 	private void dummyMethod(String param) {
-		// no-op
 	}
 
 	private HttpServletRequest mockRequest(String uri) {
@@ -42,8 +41,6 @@ class GlobalExceptionHandlerTest {
 		when(webRequest.getDescription(false)).thenReturn("uri=" + uri);
 		return webRequest;
 	}
-
-	// --- tests específicos ---------------------------------------------------
 
 	@Test
 	void handleResourceNotFound_shouldReturn404() {
@@ -127,13 +124,11 @@ class GlobalExceptionHandlerTest {
 
 	@Test
 	void handleMethodArgumentNotValid_shouldReturn400WithFormattedMessage() throws Exception {
-		// Preparamos BindingResult con un FieldError
 		Object target = new Object();
 		BindingResult bindingResult = new BeanPropertyBindingResult(target, "bankAccountRequest");
 		bindingResult.addError(
 				new FieldError("bankAccountRequest", "ownerName", null, false, null, null, "must not be blank"));
 
-		// Construimos MethodParameter usando el método dummy
 		Method method = GlobalExceptionHandlerTest.class.getDeclaredMethod("dummyMethod", String.class);
 		MethodParameter parameter = new MethodParameter(method, 0);
 

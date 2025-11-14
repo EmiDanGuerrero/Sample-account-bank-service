@@ -41,12 +41,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
 	}
 
-	// 4xx cuando nuestro RestClient recibe errores de otros endpoints y sube la
-	// excepción
+	// 4xx - cuando nuestro RestClient recibe errores de otros endpoints y sube la excepción
 	@ExceptionHandler(RestClientResponseException.class)
 	public ResponseEntity<ApiError> handleRestClientResponse(RestClientResponseException ex,
 			HttpServletRequest request) {
-		HttpStatus status = HttpStatus.resolve(ex.getRawStatusCode());
+		HttpStatus status = HttpStatus.resolve(ex.getStatusCode().value());
 		if (status == null) {
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}

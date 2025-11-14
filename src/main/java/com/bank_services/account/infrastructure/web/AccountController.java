@@ -39,8 +39,6 @@ public class AccountController {
 		this.selfAccountClient = selfAccountClient;
 	}
 
-	// ===================== CREATE =====================
-
 	@PostMapping
 	public ResponseEntity<BankAccountResponse> createAccount(@Valid @RequestBody BankAccountRequest request) {
 		BankAccount toCreate = mapToDomainForCreate(request);
@@ -52,8 +50,6 @@ public class AccountController {
 
 		return ResponseEntity.created(location).body(response);
 	}
-
-	// ====================== READ ======================
 
 	@GetMapping("/{id}")
 	public ResponseEntity<BankAccountResponse> getAccountById(@PathVariable("id") UUID id) {
@@ -76,8 +72,6 @@ public class AccountController {
 		return ResponseEntity.ok(summary);
 	}
 
-	// ===================== UPDATE =====================
-
 	@PutMapping("/{id}")
 	public ResponseEntity<BankAccountResponse> updateAccount(@PathVariable("id") UUID id,
 			@Valid @RequestBody BankAccountRequest request) {
@@ -86,15 +80,11 @@ public class AccountController {
 		return ResponseEntity.ok(mapToResponse(updated));
 	}
 
-	// ===================== DELETE =====================
-
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteAccount(@PathVariable("id") UUID id) {
 		accountService.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-
-	// =================== MAPPERS ======================
 
 	private BankAccount mapToDomainForCreate(BankAccountRequest request) {
 		BankAccount account = new BankAccount();
@@ -110,8 +100,6 @@ public class AccountController {
 			balance = BigDecimal.ZERO;
 		}
 		account.setBalance(balance);
-
-		// status, id, fechas se completan en el servicio
 		account.setStatus(AccountStatus.ACTIVE);
 		return account;
 	}
@@ -130,9 +118,6 @@ public class AccountController {
 			balance = BigDecimal.ZERO;
 		}
 		account.setBalance(balance);
-
-		// el status lo vamos a mantener como venga de la base
-		// (se respeta el existente, salvo en cierre lógico)
 		return account;
 	}
 
